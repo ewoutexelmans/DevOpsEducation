@@ -1,0 +1,46 @@
+/* Colour palette used https://www.materialpalette.com/orange/green */
+
+table thead td {
+  font-weight: bold;
+}
+
+table img {
+  max-width: 25px;
+  max-height: 25px;
+}
+
+.current_student {
+  background: #FF9800;
+  color: #fff;
+}
+
+.current_student .extra_info {
+  color: #FFE0B2;
+  font-variant: small-caps;
+}
+
+.completed {
+  background: #4CAF50;
+  color: #fff;
+}
+
+body {
+  color: #212121;
+}
+
+.temp_entry {
+  padding: 5px 0 5px 0;
+  margin: 10px 0 10px 0;
+  border: 1px solid #BDBDBD;
+  text-align: right;
+}
+
+.btn-primary {
+  background-color: #ff9800;
+  border-color: #f57c00;
+}
+
+.btn-primary:hover {
+  background-color: #f57c00;
+  border-color: #f57c00;
+}

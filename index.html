@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="app.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+    <script src="app.js"></script>
+
+    <title>LabTutor</title>
+  </head>
+  <body ng-app="labTutorApp">
+    <div class="container" ng-controller="RoomController">
+      <h1>Kamer #12345</h1>
+      <div class="row temp_entry">
+        <div class="col-md-12">
+          <label>Jouw naam </label>
+          <input type="text" placeholder="Naam" ng-model="room.currentUser.name" />
+          <button type="submit" class="btn btn-primary">Join</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table">
+            <thead>
+              <td>Naam student</td>
+              <td>1</td>
+              <td>2</td>
+              <td>3</td>
+              <td>4</td>
+              <td>5</td>
+              <td>6</td>
+              <td>7</td>
+              <td><img src="finished.png"></img>
+            </thead>
+            <tbody>
+              <tr ng-class="{ completed: allExercisesCompleted(room.currentUser) }" ng-show="!!room.currentUser.name" class="current_student">
+                <td>{{ room.currentUser.name }} <span class="extra_info">YOU</span></td>
+                <td ng-repeat="exerciseStatus in room.currentUser.exercisesStatus">
+                  <input type="checkbox" ng-model="exerciseStatus.completed" />
+                </td>
+                <td>
+                  <img ng-show="allExercisesCompleted(room.currentUser)" src="check.png"></img>
+                </td>
+              </tr>
+
+              <tr ng-class="{ completed: allExercisesCompleted(otherUser) }" ng-repeat="otherUser in room.otherUsers">
+                <td>{{ otherUser.name }}</td>
+                <td ng-repeat="exerciseStatus in otherUser.exercisesStatus">
+                  <input type="checkbox" ng-model="exerciseStatus.completed" />
+                </td>
+                <td>
+                  <img ng-show="allExercisesCompleted(otherUser)" src="check.png"></img>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
