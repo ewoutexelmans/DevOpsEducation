@@ -1,0 +1,18 @@
+
+Vagrant.configure("2") do |config|
+    # ubuntu versie van onze virtuele machine
+    config.vm.box = "ubuntu/xenial64"
+    # naam van de virtuele machine
+    config.vm.hostname = "labo3"
+    # nieuwe gebruiker die private ssh key gebruikt
+    #config.ssh.username = "admin"
+    #config.ssh.private_key_path = ["C:\\Users\\ewout\\Documents\\MobaXterm\\home\\.ssh\\id_rsa", "C:\\Users\\ewout\\.vagrant.d\\insecure_private_key"]
+   # config.ssh.insert_key = false
+    #config.vm.provision "file", source: "C:\\Users\\ewout\\Documents\\MobaXterm\\home\\.ssh\\id_rsa.pub", destination: "~/.ssh/authorized_keys"
+    # bij het aanmaken van de virtuele machine wordt dit shellscript gerund
+    config.vm.provision :shell, path: "bootstrap.sh"    
+    # de machine krijgt een privaat ip adres dmv dhcp
+    config.vm.network "private_network", type: "dhcp"
+    # portforwarding om onze webserver op poort 8080 beschikbaar te maken
+    config.vm.network :forwarded_port, guest: 80, host: 8080    
+end
